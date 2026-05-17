@@ -1,0 +1,83 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User's career profile and preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "careerGoals": { "type": "string" },
+        "preferredIndustries": { "type": "array", "items": { "type": "string" } },
+        "salaryExpectations": { "type": "string" },
+        "geographicPreferences": { "type": "string" },
+        "workStyle": { "type": "string", "enum": ["remote", "hybrid", "in-office"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Resume": {
+      "title": "Resume Data",
+      "description": "Parsed resume content and AI analysis",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "fullName": { "type": "string" },
+        "summary": { "type": "string" },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "workHistory": { "type": "array" },
+        "education": { "type": "array" },
+        "parsedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId"]
+    },
+    "Job": {
+      "title": "Job Listing",
+      "description": "Aggregated job opportunities",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "company": { "type": "string" },
+        "location": { "type": "string" },
+        "description": { "type": "string" },
+        "salary": { "type": "string" },
+        "type": { "type": "string" },
+        "source": { "type": "string" },
+        "active": { "type": "boolean" },
+        "postedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "company"]
+    },
+    "Application": {
+      "title": "Job Application",
+      "description": "Tracking user's applications",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "jobId": { "type": "string" },
+        "status": { "type": "string", "enum": ["saved", "applied", "interviewing", "offered", "rejected"] },
+        "appliedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "jobId", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Individual user profiles"
+    },
+    "/resumes/{resumeId}": {
+      "schema": "Resume",
+      "description": "Parsed resume data"
+    },
+    "/jobs/{jobId}": {
+      "schema": "Job",
+      "description": "Job listings"
+    },
+    "/applications/{applicationId}": {
+      "schema": "Application",
+      "description": "User applications"
+    }
+  }
+}

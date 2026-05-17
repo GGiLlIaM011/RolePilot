@@ -1,0 +1,12 @@
+{
+  "name": "RolePilot",
+  "description": "An intelligent AI-powered platform for career analysis, job matching, and trajectory prediction.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
